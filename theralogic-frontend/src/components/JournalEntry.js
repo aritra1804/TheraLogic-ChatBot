@@ -18,38 +18,58 @@ export default function JournalEntry({ entry, onSave, onCancel }) {
       tags: tags.split(",").map(t => t.trim()).filter(Boolean),
       id: entry?.id || Date.now(),
     };
-    console.log("Entry to save from form:", entryToSave);
     onSave(entryToSave);
   };
 
   return (
-    <form onSubmit={handleSave} style={{ background: "#f9f9f9", padding: 20, borderRadius: 12, boxShadow: "0 1px 4px rgba(0,0,0,0.04)", marginBottom: 24 }}>
-      <div style={{ marginBottom: 12 }}>
-        <input
-          type="text"
-          value={title}
-          onChange={e => setTitle(e.target.value)}
-          placeholder="Title"
-          style={{ width: "100%", padding: 8, fontSize: 18, borderRadius: 6, border: "1px solid #ccc" }}
-          required
-        />
-      </div>
-      <div style={{ marginBottom: 12 }}>
-        <textarea
-          value={content}
-          onChange={e => setContent(e.target.value)}
-          placeholder="Write your journal entry..."
-          rows={6}
-          style={{ width: "100%", padding: 8, fontSize: 16, borderRadius: 6, border: "1px solid #ccc" }}
-          required
-        />
-      </div>
-      <div style={{ display: "flex", gap: 12, marginBottom: 12 }}>
+    <form onSubmit={handleSave} style={{
+      background: "#f8faff",
+      padding: 28,
+      borderRadius: 16,
+      boxShadow: "0 2px 12px rgba(79,140,255,0.06)",
+      marginBottom: 28,
+      display: "flex",
+      flexDirection: "column",
+      gap: 18
+    }}>
+      <input
+        type="text"
+        value={title}
+        onChange={e => setTitle(e.target.value)}
+        placeholder="Title"
+        style={{
+          width: "100%",
+          padding: 14,
+          fontSize: 20,
+          borderRadius: 8,
+          border: "1px solid #ccc",
+          fontWeight: 600,
+          marginBottom: 2
+        }}
+        required
+      />
+      <textarea
+        value={content}
+        onChange={e => setContent(e.target.value)}
+        placeholder="Write your journal entry..."
+        rows={7}
+        style={{
+          width: "100%",
+          padding: 14,
+          fontSize: 17,
+          borderRadius: 8,
+          border: "1px solid #ccc",
+          fontFamily: "inherit",
+          marginBottom: 2
+        }}
+        required
+      />
+      <div style={{ display: "flex", gap: 12, marginBottom: 2 }}>
         <input
           type="date"
           value={date}
           onChange={e => setDate(e.target.value)}
-          style={{ padding: 8, borderRadius: 6, border: "1px solid #ccc" }}
+          style={{ padding: 12, borderRadius: 8, border: "1px solid #ccc", fontSize: 16 }}
           required
         />
         <input
@@ -57,12 +77,12 @@ export default function JournalEntry({ entry, onSave, onCancel }) {
           value={tags}
           onChange={e => setTags(e.target.value)}
           placeholder="Tags (comma separated)"
-          style={{ flex: 1, padding: 8, borderRadius: 6, border: "1px solid #ccc" }}
+          style={{ flex: 1, padding: 12, borderRadius: 8, border: "1px solid #ccc", fontSize: 16 }}
         />
       </div>
-      <div style={{ display: "flex", gap: 8 }}>
-        <button type="submit" style={{ background: "#4f8cff", color: "#fff", border: "none", borderRadius: 8, padding: "8px 24px", fontWeight: 600, fontSize: 16, cursor: "pointer" }}>Save</button>
-        {onCancel && <button type="button" onClick={onCancel} style={{ background: "#eee", color: "#333", border: "none", borderRadius: 8, padding: "8px 24px", fontWeight: 600, fontSize: 16, cursor: "pointer" }}>Cancel</button>}
+      <div style={{ display: "flex", gap: 10, marginTop: 6 }}>
+        <button type="submit" style={{ background: "#4f8cff", color: "#fff", border: "none", borderRadius: 10, padding: "12px 36px", fontWeight: 700, fontSize: 18, cursor: "pointer", boxShadow: "0 2px 8px rgba(79,140,255,0.08)" }}>Save</button>
+        {onCancel && <button type="button" onClick={onCancel} style={{ background: "#eee", color: "#333", border: "none", borderRadius: 10, padding: "12px 36px", fontWeight: 700, fontSize: 18, cursor: "pointer" }}>Cancel</button>}
       </div>
     </form>
   );

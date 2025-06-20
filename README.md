@@ -1,80 +1,95 @@
 # TheraLogic Chatbot
 
-A stateful chatbot that classifies incoming messages as **emotional** or **logical** and routes them to specialized agents—either a therapist-style responder or a purely logical assistant. Built using **LangGraph** for flow orchestration and **LangChain** (Anthropic Claude 3.5 Sonnet) for LLM-based classification and response generation.
+TheraLogic is a modern, AI-powered journaling companion and chatbot. It helps you reflect, chat, and grow—combining empathetic support with logical answers, all in a beautiful, privacy-first web app.
 
 ---
 
-## 🚀 Features
+## ✨ Features
 
-- **Message Classification**: Automatically determines whether the user's query needs an emotional (therapist) or logical response.  
-- **Emotional Support Agent**: Provides empathetic, therapist-like replies for emotional messages.  
-- **Logical Assistant**: Delivers fact-based, concise answers for logical inquiries.  
-- **Composable Flow**: Orchestrates a multi-step pipeline (classifier → router → agent) via a StateGraph.  
-- **Environment Configuration**: API credentials and settings managed via `.env`.  
+- **AI-Powered Journaling:** Chat with an empathetic AI and save conversations as journal entries.
+- **Emotional & Logical Routing:** Messages are classified and routed to either a therapist-style or logical assistant.
+- **Modern, Responsive UI:** Beautiful landing page, onboarding tour, chat, and journal dashboard. Fully mobile-friendly.
+- **Onboarding Tour:** New users are guided with a step-by-step modal tour (shows only once per device).
+- **Local-First Privacy:** All journal data is stored in your browser (localStorage). Nothing leaves your device.
+- **Streaks & Progress:** Visualize your journaling streak and progress over time.
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Python 3.8+**  
-- **LangGraph**: Stateful graph-based workflow orchestration  
-- **LangChain**: LLM integration (Anthropic Claude)  
-- **Pydantic**: Structured output validation  
-- **dotenv**: Environment variable management  
+- **Frontend:** React
+- **Backend:** Flask, LangChain, LangGraph, Ollama (local LLM)
+- **LLM:** Local model via Ollama (e.g., Llama 3)
 
 ---
 
-## 📦 Installation
+## 📸 Screenshots
 
-1. **Clone the repository**  
-    ```bash
-    git clone https://github.com/aritra1804/theralogic-chatbot.git
-    cd theralogic-chatbot
-    ```
-2. **Create and activate a virtual environment (optional but recommended)**  
-    ```bash
-    python3 -m venv venv
-    source venv/bin/activate  # On Windows use: venv\Scripts\activate
-    ```
-3. **Install the dependencies**  
-    ```bash
-    pip install -r requirements.txt
-    ```
-4. **Configure the environment**  
-    Duplicate the `.env.example` file, rename it to `.env`, and update the necessary API keys and settings.
+### Onboarding Tour
+![Onboarding Tour](./onboarding.png)
+
+### Home Page
+![Home Page](./home.png)
+
+### Chat - Conversation Example 1
+![Chat Example 1](./chat1.png)
+
+### Chat - Conversation Example 2
+![Chat Example 2](./chat2.png)
+
+### Journal Page
+![Journal Page](./journal.png)
 
 ---
 
-## 🚀 Usage
+## ⚡ Setup & Usage
 
-Run the chatbot using the following command:
-```bash
-python main.py
-```
-Follow the on-screen instructions to interact with the chatbot. The system will analyze your input and provide an appropriate response based on the classification.
+### 1. Backend (Flask + Ollama)
+
+1. **Install Python dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+2. **Start the backend server:**
+   ```bash
+   python backend.py
+   ```
+   - The backend runs on `http://localhost:5050` by default.
+   - Make sure Ollama is running locally with your chosen model (e.g., `ollama run llama3`)
+
+### 2. Frontend (React)
+
+1. **Install dependencies:**
+   ```bash
+   cd theralogic-frontend
+   npm install
+   ```
+2. **Start the React app:**
+   ```bash
+   npm start
+   ```
+   - The frontend runs on `http://localhost:3000`
 
 ---
 
-## 🔧 Configuration
+## 🧠 How It Works
 
-You can adjust the behavior of TheraLogic Chatbot via configuration settings in the `.env` file. Key settings include:
-- API keys for Anthropic Claude or other llm of your choice.
-- Parameters for the message classifier and agent behaviors.
-- Optional logging configurations for debugging.
+- **Message Flow:**
+  1. User sends a message in chat.
+  2. Backend classifies it as "emotional" or "logical" using an LLM.
+  3. The message is routed to either a therapist-style or logical agent.
+  4. The response is returned and can be saved as a journal entry.
+
+- **Journaling:**
+  - All journal entries are stored in your browser (localStorage).
+  - The Journal page lets you view, edit, and search your entries.
+
+- **Onboarding:**
+  - New users see a onboarding tour on first visit.
 
 ---
 
-## 📝 Examples
-
-Below are some sample interactions:
-- **Emotional Query**:
-  > User: "I'm feeling really down today…"
-  >
-  > Chatbot: "I'm sorry you're feeling that way. Would you like to talk about what's on your mind?"
-- **Logical Query**:
-  > User: "What is the capital of France?"
-  >
-  > Chatbot: "The capital of France is Paris."
+Ready to reflect, chat, and grow? 🚀
 
 
 

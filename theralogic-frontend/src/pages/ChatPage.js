@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Chat from "../components/Chat";
 import { STORAGE_KEY, loadEntries } from "./JournalPage";
+import TopNav from "../components/TopNav";
+import Footer from "../components/Footer";
 
 function getYesterdayDate() {
   const d = new Date();
@@ -9,12 +11,12 @@ function getYesterdayDate() {
 }
 
 export default function ChatPage() {
-  const [history, setHistory] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [yesterdayEntry, setYesterdayEntry] = useState(null);
-  const [showSave, setShowSave] = useState(false);
+  const [history, setHistory] = React.useState([]);
+  const [loading, setLoading] = React.useState(false);
+  const [yesterdayEntry, setYesterdayEntry] = React.useState(null);
+  const [showSave, setShowSave] = React.useState(false);
 
-  useEffect(() => {
+  React.useEffect(() => {
     // Load yesterday's journal entry
     const entries = loadEntries();
     const yest = getYesterdayDate();
@@ -76,16 +78,33 @@ export default function ChatPage() {
   };
 
   return (
-    <div>
-      <h2 style={{ textAlign: "center", marginTop: 24 }}>🧠 TheraLogic Chatbot</h2>
-      <Chat onSend={sendMessage} history={history} loading={loading} />
-      {showSave && (
-        <div style={{ textAlign: "center", marginTop: 16 }}>
-          <button onClick={handleSaveToJournal} style={{ background: "#4f8cff", color: "#fff", border: "none", borderRadius: 8, padding: "8px 24px", fontWeight: 600, fontSize: 16, cursor: "pointer" }}>
-            Save to Journal
-          </button>
+    <div style={{ minHeight: "100vh", background: "linear-gradient(135deg, #f4f6fa 0%, #e7eaf6 100%)", display: "flex", flexDirection: "column" }}>
+      <TopNav />
+      <main style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", minHeight: 0 }}>
+        <div className="chat-card" style={{
+          maxWidth: 900,
+          width: "100%",
+          margin: "56px auto 0 auto",
+          background: "#fff",
+          borderRadius: 20,
+          boxShadow: "0 4px 32px rgba(0,0,0,0.07)",
+          padding: 40,
+          minHeight: 540,
+          display: "flex",
+          flexDirection: "column"
+        }}>
+          <h2 style={{ textAlign: "center", marginTop: 0, marginBottom: 24, fontWeight: 700, fontSize: 28, color: "#4f8cff", letterSpacing: -1 }}>🧠 TheraLogic Chatbot</h2>
+          <Chat onSend={sendMessage} history={history} loading={loading} />
+          {showSave && (
+            <div style={{ textAlign: "center", marginTop: 16 }}>
+              <button onClick={handleSaveToJournal} style={{ background: "#4f8cff", color: "#fff", border: "none", borderRadius: 8, padding: "10px 32px", fontWeight: 700, fontSize: 18, cursor: "pointer", boxShadow: "0 2px 8px rgba(79,140,255,0.08)" }}>
+                Save to Journal
+              </button>
+            </div>
+          )}
         </div>
-      )}
+      </main>
+      <Footer className="footer" />
     </div>
   );
 } 

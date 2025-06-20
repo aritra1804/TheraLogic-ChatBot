@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import JournalList from "../components/JournalList";
 import JournalEntry from "../components/JournalEntry";
+import TopNav from "../components/TopNav";
+import Footer from "../components/Footer";
 
 const STORAGE_KEY = "theralogic_journal_entries";
 
@@ -62,13 +64,30 @@ export default function JournalPage() {
   };
 
   return (
-    <div style={{ maxWidth: 600, margin: "40px auto", padding: 24 }}>
-      <h2>📔 My Journal</h2>
-      <button onClick={handleNew} style={{ background: "#4f8cff", color: "#fff", border: "none", borderRadius: 8, padding: "8px 24px", fontWeight: 600, fontSize: 16, marginBottom: 24, cursor: "pointer" }}>New Entry</button>
-      {editing !== null ? (
-        <JournalEntry entry={editing} onSave={handleSave} onCancel={() => setEditing(null)} />
-      ) : null}
-      <JournalList entries={entries} onSelect={handleSelect} onDelete={handleDelete} />
+    <div style={{ minHeight: "100vh", background: "linear-gradient(135deg, #f4f6fa 0%, #e7eaf6 100%)", display: "flex", flexDirection: "column" }}>
+      <TopNav />
+      <main style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", minHeight: 0 }}>
+        <div className="journal-card" style={{
+          maxWidth: 900,
+          width: "100%",
+          margin: "56px auto 0 auto",
+          background: "#fff",
+          borderRadius: 20,
+          boxShadow: "0 4px 32px rgba(0,0,0,0.07)",
+          padding: 40,
+          minHeight: 540,
+          display: "flex",
+          flexDirection: "column"
+        }}>
+          <h2 style={{ textAlign: "center", marginTop: 0, marginBottom: 24, fontWeight: 700, fontSize: 28, color: "#4f8cff", letterSpacing: -1 }}>📔 My Journal</h2>
+          <button onClick={handleNew} style={{ background: "#4f8cff", color: "#fff", border: "none", borderRadius: 8, padding: "10px 32px", fontWeight: 700, fontSize: 18, marginBottom: 24, cursor: "pointer", boxShadow: "0 2px 8px rgba(79,140,255,0.08)" }}>New Entry</button>
+          {editing !== null ? (
+            <JournalEntry entry={editing} onSave={handleSave} onCancel={() => setEditing(null)} />
+          ) : null}
+          <JournalList entries={entries} onSelect={handleSelect} onDelete={handleDelete} />
+        </div>
+      </main>
+      <Footer className="footer" />
     </div>
   );
 } 

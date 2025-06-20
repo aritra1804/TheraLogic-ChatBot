@@ -1,22 +1,19 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ChatPage from "./pages/ChatPage";
 import JournalPage from "./pages/JournalPage";
+import LandingPage from "./pages/LandingPage";
+import OnboardingTour from "./components/OnboardingTour";
 import "./Chat.css";
 
 function App() {
   return (
     <Router>
-      <nav style={{
-        display: "flex", justifyContent: "center", gap: 32, padding: 16, background: "#f4f6fa", boxShadow: "0 1px 4px rgba(0,0,0,0.04)"
-      }}>
-        <Link to="/chat" style={{ textDecoration: "none", color: "#4f8cff", fontWeight: 600 }}>Chat</Link>
-        <Link to="/journal" style={{ textDecoration: "none", color: "#4f8cff", fontWeight: 600 }}>Journal</Link>
-      </nav>
+      <OnboardingTour />
       <Routes>
+        <Route path="/" element={<LandingPage />} />
         <Route path="/chat" element={<ChatPage />} />
         <Route path="/journal" element={<JournalPage />} />
-        <Route path="/" element={<ChatPage />} />
       </Routes>
     </Router>
   );
