@@ -1,0 +1,7 @@
+langchain
+langgraph
+pydantic
+dotenv
+typing_extensions
+streamlit
+langchain-community 
