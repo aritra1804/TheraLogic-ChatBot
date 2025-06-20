@@ -4,4 +4,6 @@ pydantic
 dotenv
 typing_extensions
 streamlit
-langchain-community 
+langchain-community
+Flask
+flask-cors 
